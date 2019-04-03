@@ -1,0 +1,70 @@
+#game-container {
+	width: 53.3vh;
+	height: 60vh;
+	margin: auto;
+	padding: 10px;
+	margin-top: 50px;
+	border: 2px solid var(--dark-red);
+	display: grid;
+	grid-template-rows: 6.6vh 53.3vh;
+	font-family: verdana;
+}
+
+#game-info {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 100%;
+	align-items: center;
+}
+
+.player-info {
+	text-align: center;
+	font-size: 2.6vh;
+}
+
+.player-info.turn {
+	font-size: 5.3vh;
+}
+
+#game-board-container {
+	margin: 0.6vh;
+	height: 52vh;
+	width: 52vh;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 0.6vh;
+	grid-row-gap: 0.6vh;
+	background-color: #000;
+}
+
+.game-spot {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	align-items: center;
+	text-align: center;
+	background-color: #fff;
+	font-size: 10.6vh;
+	cursor: pointer;
+}
+
+.game-spot.win-pos {
+	background-color: #7fff96;
+}
+
+#new-game-btn {
+	margin: auto;
+	margin-top: 10px;
+	width: 20vh;
+	height: 6.6vh;
+	font-size: 4vh;
+	background-color: var(--dark-red);
+	color: #fff;
+	display: grid;
+	border-radius: 5px;
+	font-family: courier;
+	align-items: center;
+	text-align: center;
+	cursor: pointer;
+}

@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 5000;
 
 
 APP.use(EXPRESS.static('gamebox/static'));
+APP.use(EXPRESS.static('gamebox'));
 APP.use(EXPRESS.static('favicon'));
 
 

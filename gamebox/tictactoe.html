@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title></title>
+	<title>Tic-Tac-Toe</title>
 	<link rel="shortcut icon" type="text/css" href="/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/css/template.css">
+	<link rel="stylesheet" type="text/css" href="/css/games/tictactoe.css">
+	<script type="text/javascript" src="/js/tictactoe.js"></script>
+	<script type="text/javascript">window.onload=()=>setUp();</script>
 </head>
 <body>
 	<div id="header">
@@ -34,6 +37,20 @@
 				<span>&laquo; Back</span>
 			</div>
 		</a>
+		<div id="game-container" class="content-box">
+			<div id="game-info">
+				<div id="player-1" class="player-info turn" style="color:red">
+					<span>X</span>
+				</div>
+				<div id="player-2" class="player-info" style="color:blue">
+					<span>O</span>
+				</div>
+			</div>
+			<div id="game-board-container" class="game-board-container"></div>
+		</div>
+		<div id="new-game-btn" onclick="setUp()">
+			<span>New Game</span>
+		</div>
 	</div>
 	<div id="footer">
 		<div id="footer-logo-container">
