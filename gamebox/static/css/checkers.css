@@ -1,0 +1,51 @@
+:root {
+	--wood: #ddcc7e;
+	--dark-wood: #967f54;
+}
+
+#game-container {
+	height: 85vh;
+	width: 85vh;
+	border: 10px solid var(--wood);
+	border-radius: 6px;
+	margin: auto;
+}
+
+#board-container {
+	height: 100%;
+	outline: 3px solid var(--dark-red);
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+}
+
+.board-spot.no-play {
+	background-color: var(--wood);
+}
+
+.board-spot.play {
+	background-color: var(--dark-wood);
+}
+
+.piece {
+	height: 90%;
+	width: 90%;
+	margin: 5%;
+	border-radius: 50%;
+}
+
+.white-piece {
+	background-color: #fff;
+}
+
+.black-piece {
+	background-color: #000;
+}
+
+.play.turn {
+	cursor: pointer;
+}
+
+.play.turn > div {
+	border: 3px solid #d8db3f;
+}

@@ -108,13 +108,17 @@ a {
 	color: #fff;
 	font-family: courier;
 	font-size: 24px;
-	display: grid;
-	align-items: center;
-	justify-items: center;
 	margin: 10px 0 0 20px;
 	border-radius: 5px;
 	box-shadow: inset 0 0 #fff0;
 	transition: box-shadow .4s;
+}
+
+#back-btn div, #back-btn a {
+	text-align: center;
+	padding-top: 12px;
+	height: 100%;
+	width: 100%;
 }
 
 #back-btn:hover {

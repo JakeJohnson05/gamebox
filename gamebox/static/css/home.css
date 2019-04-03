@@ -15,8 +15,8 @@
 	margin: auto;
 	margin-top: 50px;
 	display: grid;
-	grid-template-columns: repeat(4, 15vw);
-	grid-template-rows: 15vw;
+	grid-template-columns: repeat(3,20vw);
+	grid-template-rows: 20vw;
 	justify-content: center;
 	grid-column-gap: 10px;
 	grid-row-gap: 10px;
@@ -49,6 +49,7 @@
 	-webkit-transition: opacity .3s;
 	-moz-transition: opacity .3s;
 	transition: opacity .3s;
+	font-size: 2vw;
 }
 
 .game-container:hover > .game-title {
