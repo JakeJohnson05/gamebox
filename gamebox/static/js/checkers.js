@@ -92,6 +92,7 @@ let spotClick = function(spot) {
 
 let getRow = spot => Math.floor(Number(spot.id) / 8);
 let getSpotColor = spot => spot.classList.contains('white') ? 'white': spot.classList.contains('black') ? 'black':'blank';
+let isInBoard = id => ((-1 < id) && (id < 64));
 
 let getPossMoves = function(spot) {
 	let spotId = Number(spot.id);
@@ -100,23 +101,26 @@ let getPossMoves = function(spot) {
 	let direction = turn ? 1:-1;
 	var possMoves = [];
 
-	if (Math.abs(getRow(document.getElementById(direction * 7 + spotId)) - row) === 1) {
+	if (isInBoard(direction * 7 + spotId)
+		&& Math.abs(getRow(document.getElementById(direction * 7 + spotId)) - row) === 1) {
 		if (getSpotColor(document.getElementById(direction * 7 + spotId)) === 'blank') {
 			possMoves.push(direction * 7 + spotId);
-		} else if (getSpotColor(document.getElementById(direction * 7 + spotId)) != spotColor &&
-			getSpotColor(document.getElementById(direction * 14 + spotId)) === 'blank' &&
-			Math.abs(getRow(document.getElementById(direction * 14 + spotId)) - row) === 2) {
-			
+		} else if (getSpotColor(document.getElementById(direction * 7 + spotId)) != spotColor
+			&& isInBoard(direction * 14 + spotId)
+			&& getSpotColor(document.getElementById(direction * 14 + spotId)) === 'blank'
+			&& Math.abs(getRow(document.getElementById(direction * 14 + spotId)) - row) === 2) {
 			possMoves.push(direction * 14 + spotId);
 		}
 	}
-	if (Math.abs(getRow(document.getElementById(direction * 9 + spotId)) - row) === 1) {
-		if (getSpotColor(document.getElementById(direction * 9 + spotId)) === 'blank') {
+	if (isInBoard(direction * 9 + spotId)
+		&& Math.abs(getRow(document.getElementById(direction * 9 + spotId)) - row) === 1) {
+		if (getSpotColor(document.getElementById(direction * 9 + spotId)) === 'blank'
+			&& isInBoard(direction * 9 + spotId)) {
 			possMoves.push(direction * 9 + spotId);
 		} else if (getSpotColor(document.getElementById(direction * 9 + spotId)) != spotColor
+			&& isInBoard(direction * 18 + spotId)
 			&& getSpotColor(document.getElementById(direction * 18 + spotId)) === 'blank'
 			&& Math.abs(getRow(document.getElementById(direction * 18 + spotId)) - row) === 2) {
-			
 			possMoves.push(direction * 18 + spotId);
 		}
 	}
