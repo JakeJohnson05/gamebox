@@ -125,40 +125,74 @@ let getPossMoves = function(spot) {
 		}
 	}
 
+	// if the piece is a king
+	if (spot.classList.contains('king')) {
+		direction = turn ? -1:1;
+		if (isInBoard(direction * 7 + spotId)
+			&& Math.abs(getRow(document.getElementById(direction * 7 + spotId)) - row) === 1) {
+			if (getSpotColor(document.getElementById(direction * 7 + spotId)) === 'blank') {
+				possMoves.push(direction * 7 + spotId);
+			} else if (getSpotColor(document.getElementById(direction * 7 + spotId)) != spotColor
+				&& isInBoard(direction * 14 + spotId)
+				&& getSpotColor(document.getElementById(direction * 14 + spotId)) === 'blank'
+				&& Math.abs(getRow(document.getElementById(direction * 14 + spotId)) - row) === 2) {
+				possMoves.push(direction * 14 + spotId);
+			}
+		}
+		if (isInBoard(direction * 9 + spotId)
+			&& Math.abs(getRow(document.getElementById(direction * 9 + spotId)) - row) === 1) {
+			if (getSpotColor(document.getElementById(direction * 9 + spotId)) === 'blank'
+				&& isInBoard(direction * 9 + spotId)) {
+				possMoves.push(direction * 9 + spotId);
+			} else if (getSpotColor(document.getElementById(direction * 9 + spotId)) != spotColor
+				&& isInBoard(direction * 18 + spotId)
+				&& getSpotColor(document.getElementById(direction * 18 + spotId)) === 'blank'
+				&& Math.abs(getRow(document.getElementById(direction * 18 + spotId)) - row) === 2) {
+				possMoves.push(direction * 18 + spotId);
+			}
+		}
+	}
+
 	return possMoves;
 }
 
-let movePiece = function(from, to) {
+let movePiece = function(fromPos, toPos) {
 	// Change 'from' and 'to' classes
 	let classChange = turn ? 'white':'black';
-	from.classList.remove(classChange, 'turn');
-	to.classList.add(classChange);
+	toPos.classList.add(classChange);
+	if (fromPos.classList.contains('king')) toPos.classList.add('king');
+	fromPos.classList.remove(classChange, 'turn', 'king');
 
 	// Remove 'from' piece
-	while (from.lastChild) {
-		from.removeChild(from.lastChild);
-	}
+	while (fromPos.lastChild) fromPos.removeChild(fromPos.lastChild);
 
 	// Add 'to' piece
 	let newPiece = document.createElement('div');
 	newPiece.classList.add(`${ classChange }-piece`, 'piece');
-	to.appendChild(newPiece);
+	toPos.appendChild(newPiece);
 
 	let direction = turn ? 1:-1;
+
 	// Check if piece has been jumped
-	if (Math.abs(getRow(to) - getRow(from)) === 2) {
-		if (Number(to.id) === direction * 14 + Number(from.id)) {
-			let node = document.getElementById(direction * 7 + Number(from.id));
+	if (Math.abs(getRow(toPos) - getRow(fromPos)) === 2) {
+		if (Number(toPos.id) === direction * 14 + Number(fromPos.id)) {
+			let node = document.getElementById(direction * 7 + Number(fromPos.id));
 			node.classList.remove((turn ? 'black':'white'));
 			while (node.lastChild) {
 				node.removeChild(node.lastChild);
 			}
 		} else {
-			let node = document.getElementById(direction * 9 + Number(from.id));
+			let node = document.getElementById(direction * 9 + Number(fromPos.id));
 			node.classList.remove((turn ? 'black':'white'));
 			while (node.lastChild) {
 				node.removeChild(node.lastChild);
 			}
 		}
+	}
+
+	// Check if piece moved has become a king
+	if ((getRow(toPos) === 0 && toPos.classList.contains('black'))
+		|| (getRow(toPos) === 7 && toPos.classList.contains('white'))) {
+		toPos.classList.add('king');
 	}
 }
